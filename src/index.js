@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/App';
 
 ReactDOM.render(
-    <App test="test-prop1" />,
+    <App />,
     document.getElementById('root')
 );
