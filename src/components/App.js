@@ -18,7 +18,7 @@ class App extends React.Component {
     try {
       const response = await fetch(API_URL);
       const data = await response.json();
-      fetchData = data.results[0];
+      fetchData = data.results;
     } catch (error) {
       fetchData = null;
     }
@@ -32,8 +32,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        { this.renderData() }
         { this.renderRequestButton() }
+        { this.renderData() }
       </div>
     );
   }
@@ -45,7 +45,12 @@ class App extends React.Component {
     if (!this.state.data && !this.state.loading) {
       return <p>データなし</p>;
     }
-    return <p>{ JSON.stringify( this.state.data ) }</p>;
+
+    const quizList = this.state.data.map( (quiz, index) => {
+      const quizKey = index + 1;
+      return <li key={quizKey}>Q{quizKey}. {quiz.question}</li>;
+    });
+    return <ul>{ quizList }</ul>;
   }
 
   renderRequestButton() {
