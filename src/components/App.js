@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
-import Button from './Button/Button';
+import Counter from './Counter/Counter';
 
 function App() {
   return (
     <div className="App">
-      <h1 className="title">Hello, World!</h1>
-      <Button>Button1</Button>
-      <Button>Button2</Button>
-      <Button>Button3</Button>
+      <h1 className="title">Counter</h1>
+      <Counter/>
     </div>
   );
 }
