@@ -16,7 +16,7 @@ class App extends React.Component {
     this.setState({loading: true});
     let fetchData;
     try {
-      const response = await window.fetch(API_URL);
+      const response = await fetch(API_URL);
       const data = await response.json();
       fetchData = data.results[0];
     } catch (error) {
