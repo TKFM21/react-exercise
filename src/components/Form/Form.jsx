@@ -4,8 +4,7 @@ class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            lastName: '',
-            firstName: ''
+            comment: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -22,34 +21,25 @@ class Form extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const fullName = `${this.state.lastName} ${this.state.firstName}`;
-        window.alert(`氏名：${fullName}`);
+        this.props.onClickHandler(this.state.comment);
+        this.setState({
+            comment: '',
+        });
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    姓：
-                    <input
+                    <textarea
                         type="text"
-                        name="lastName"
-                        value={this.state.lastName}
+                        name="comment"
+                        value={this.state.comment}
                         onChange={this.handleChange}
                     />
                 </label>
                 <br/>
-                <label>
-                    名：
-                    <input
-                        type="text"
-                        name="firstName"
-                        value={this.state.firstName}
-                        onChange={this.handleChange}
-                    />
-                </label>
-                <br/>
-                <input type="submit" value="Send"/>
+                <input type="submit" value="Add"></input>
             </form>
         );
     }
