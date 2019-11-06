@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button/Button';
 import './Form.css';
 
@@ -43,5 +44,9 @@ class Form extends React.Component {
         );
     }
 }
+
+Form.propTypes = {
+    onSubmit: PropTypes.func.isRequired
+};
 
 export default Form;
