@@ -22,8 +22,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Form onSubmit={(data) => this.addComment(data)}></Form>
-        <CommentList comments={this.state.comments}></CommentList>
+        <Form onSubmit={(data) => this.addComment(data)} />
+        <CommentList comments={this.state.comments} />
       </div>
     );
   }
