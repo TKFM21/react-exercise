@@ -1,34 +1,29 @@
 import React from 'react';
-import './App.css';
 import Form from './Form/Form';
-// import Button from '../Button/Button';
+import CommentList from './CommentList/CommentList';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
+      comments: ['初期コメント'],
     };
 
-    this.onClickHandler = this.onClickHandler.bind(this);
+    this.addComment = this.addComment.bind(this);
   }
 
-  onClickHandler(comment) {
+  addComment(data) {
     const comments = this.state.comments.slice();
     this.setState({
-      comments: comments.concat(comment),
+      comments: comments.concat(data),
     });
   }
 
   render() {
     return (
       <div>
-        <Form onClickHandler={(comment) => this.onClickHandler(comment)} />
-        {/* <Button
-          onClickHandler={this.onClickHandler}
-        >
-          Input!
-        </Button> */}
+        <Form onSubmit={(data) => this.addComment(data)}></Form>
+        <CommentList comments={this.state.comments}></CommentList>
       </div>
     );
   }

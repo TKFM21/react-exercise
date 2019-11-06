@@ -1,46 +1,45 @@
 import React from 'react';
+import Button from '../Button/Button';
+import './Form.css';
 
 class Form extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: '',
+            body: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.sendBodyToParent = this.sendBodyToParent.bind(this);
     }
 
-    handleChange(event) {
-        const field = event.target.name;
-        const value = event.target.value;
+    sendBodyToParent() {
+        const trimBody = this.state.body.trim();
+        if (!trimBody) {
+            alert('何も入力されていません');
+            return;
+        }
+        this.props.onSubmit(trimBody);
         this.setState({
-            [field]: value
+            body: '',
         });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
-        this.props.onClickHandler(this.state.comment);
+    handleChange(event) {
         this.setState({
-            comment: '',
+            body: event.target.value,
         });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
                 <label>
-                    <textarea
-                        type="text"
-                        name="comment"
-                        value={this.state.comment}
-                        onChange={this.handleChange}
-                    />
+                    <textarea onChange={this.handleChange} value={this.state.body}></textarea>
                 </label>
-                <br/>
-                <input type="submit" value="Add"></input>
-            </form>
+                <br />
+                <Button onClickHandler={this.sendBodyToParent}>コメントする</Button>
+            </div>
         );
     }
 }
