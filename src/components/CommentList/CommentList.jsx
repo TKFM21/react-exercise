@@ -29,7 +29,7 @@ class CommentList extends React.Component {
 }
 
 CommentList.propTypes = {
-    comments: PropTypes.array.isRequired
+    comments: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default CommentList;
